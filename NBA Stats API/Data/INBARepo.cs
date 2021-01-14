@@ -13,6 +13,7 @@ namespace NBA_Stats_API.Data
         // Players
         IEnumerable<Player> GetAllPlayers();
         Player GetPlayerById(int id);
+        void UpdatePlayer(Player player);
 
         // Teams
         IEnumerable<Team> GetAllTeams();
