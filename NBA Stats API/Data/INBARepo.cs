@@ -16,5 +16,6 @@ namespace NBA_Stats_API.Data
         IEnumerable<Team> GetAllTeams();
         Team GetTeamById(int id);
         IEnumerable<Player> GetAllPlayersOnTeam();
+        object GetPlayerByName(string name);
     }
 }

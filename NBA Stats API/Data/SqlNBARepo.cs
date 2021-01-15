@@ -36,6 +36,13 @@ namespace NBA_Stats_API.Data
             return _context.Players.FirstOrDefault(p => p.Id == id);
         }
 
+        public object GetPlayerByName(string name)
+        {
+            return _context.Players
+                .Include(t => t.Team)
+                .FirstOrDefault(p => p.FirstName.Contains(name) || p.LastName.Contains(name));
+        }
+
         public Team GetTeamById(int id)
         {
             return _context.Teams.FirstOrDefault(t => t.Id == id);
