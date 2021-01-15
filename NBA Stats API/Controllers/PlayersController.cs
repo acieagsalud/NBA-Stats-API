@@ -46,7 +46,7 @@ namespace NBA_Stats_API.Controllers
         {
             var player = _repository.GetPlayerByName(name);
 
-            if (player != null) return Ok(_mapper.Map<PlayerReadDto>(player));
+            if (player != null) return Ok(_mapper.Map<IEnumerable<PlayerReadDto>>(player));
             else return NotFound();
         }
 
