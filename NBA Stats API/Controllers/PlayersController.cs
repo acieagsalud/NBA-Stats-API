@@ -52,24 +52,5 @@ namespace NBA_Stats_API.Controllers
             if (players != null) return Ok(_mapper.Map<IEnumerable<PlayerReadDto>>(players));
             else return NotFound();
         }
-
-        // PATCH api/commands/{id}
-        [HttpPatch("{id}")]
-        public ActionResult UpdateCommand(int id, JsonPatchDocument<PlayerUpdateDto> patchDoc)
-        {
-            var playerModelFromRepo = _repository.GetPlayerById(id);
-            if (playerModelFromRepo == null) return NotFound();
-
-            var playerToPatch = _mapper.Map<PlayerUpdateDto>(playerModelFromRepo);
-            patchDoc.ApplyTo(playerToPatch, ModelState);
-
-            if (!TryValidateModel(playerToPatch)) return ValidationProblem(ModelState);
-
-            _mapper.Map(playerToPatch, playerModelFromRepo);
-            _repository.UpdatePlayer(playerModelFromRepo);
-            _repository.SaveChanges();
-
-            return NoContent();
-        }
     }
 }

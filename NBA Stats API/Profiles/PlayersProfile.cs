@@ -13,7 +13,6 @@ namespace NBA_Stats_API.Profiles
         public PlayersProfile()
         {
             CreateMap<Player, PlayerReadDto>();
-            CreateMap<Player, PlayerUpdateDto>();
         }
     }
 }
