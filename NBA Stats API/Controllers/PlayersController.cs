@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using NBA_Stats_API.Data;
 using NBA_Stats_API.Dtos;
 using NBA_Stats_API.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace NBA_Stats_API.Controllers
 {
@@ -43,7 +40,7 @@ namespace NBA_Stats_API.Controllers
             else return NotFound();
         }
 
-        // GET api/players/byteamid/
+        // GET api/players/byteamid/{id}
         [HttpGet("byteamid/{id}", Name = "GetAllPlayersOnTeam")]
         public ActionResult<PlayerReadDto> GetAllPlayersOnTeam(int id)
         {
