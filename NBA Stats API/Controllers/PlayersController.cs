@@ -40,11 +40,31 @@ namespace NBA_Stats_API.Controllers
             else return NotFound();
         }
 
-        // GET api/players/byteamid/{id}
-        [HttpGet("byteamid/{id}", Name = "GetAllPlayersOnTeam")]
-        public ActionResult<PlayerReadDto> GetAllPlayersOnTeam(int id)
+        // GET api/players/name/{name}
+        [HttpGet("name/{name}", Name = "GetPlayerByName")]
+        public ActionResult<PlayerReadDto> GetPlayerByName(string name)
         {
-            var players = _repository.GetAllPlayers().Where(p => p.TeamId == id);
+            var player = _repository.GetPlayerByName(name);
+
+            if (player != null) return Ok(_mapper.Map<IEnumerable<PlayerReadDto>>(player));
+            else return NotFound();
+        }
+
+        // GET api/players/ByTeamId/{id}
+        [HttpGet("ByTeamId/{id}", Name = "GetAllPlayersOnTeamId")]
+        public ActionResult<PlayerReadDto> GetAllPlayersOnTeamId(int id)
+        {
+            var players = _repository.GetAllPlayersOnTeamId(id);
+
+            if (players != null) return Ok(_mapper.Map<IEnumerable<PlayerReadDto>>(players));
+            else return NotFound();
+        }
+
+        // GET api/players/ByTeamName/{id}
+        [HttpGet("ByTeam/{name}", Name = "GetAllPlayersOnTeam")]
+        public ActionResult<PlayerReadDto> GetAllPlayersOnTeamName(string name)
+        {
+            var players = _repository.GetAllPlayersOnTeamName(name);
 
             if (players != null) return Ok(_mapper.Map<IEnumerable<PlayerReadDto>>(players));
             else return NotFound();

@@ -38,5 +38,14 @@ namespace NBA_Stats_API.Controllers
             if (team != null) return Ok(_mapper.Map<TeamReadDto>(team));
             else return NotFound();
         }
+
+        // GET api/teams/name/{name}
+        [HttpGet("name/{name}", Name = "GetTeamByName")]
+        public ActionResult<TeamReadDto> GetTeamByName(string name)
+        {
+            var team = _repository.GetTeamByName(name);
+            if (team != null) return Ok(_mapper.Map<IEnumerable<TeamReadDto>>(team));
+            else return NotFound();
+        }
     }
 }

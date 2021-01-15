@@ -4,17 +4,17 @@ using System.Collections.Generic;
 namespace NBA_Stats_API.Data
 {
     public interface INBARepo
-    {
-        bool SaveChanges();
-        
+    {   
         // Players
         IEnumerable<Player> GetAllPlayers();
         Player GetPlayerById(int id);
-        void UpdatePlayer(Player player);
+        IEnumerable<Player> GetPlayerByName(string name);
 
         // Teams
         IEnumerable<Team> GetAllTeams();
         Team GetTeamById(int id);
-        IEnumerable<Player> GetAllPlayersOnTeam();
+        IEnumerable<Team> GetTeamByName(string name);
+        IEnumerable<Player> GetAllPlayersOnTeamId(int id);
+        IEnumerable<Player> GetAllPlayersOnTeamName(string name);
     }
 }
