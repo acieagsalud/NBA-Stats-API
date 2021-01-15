@@ -34,7 +34,7 @@ namespace NBA_Stats_API.Controllers
 
         // GET api/teams/{id}
         [HttpGet("{id}", Name = "GetTeamById")]
-        public ActionResult<PlayerReadDto> GetTeamById(int id)
+        public ActionResult<TeamReadDto> GetTeamById(int id)
         {
             var team = _repository.GetTeamById(id);
 

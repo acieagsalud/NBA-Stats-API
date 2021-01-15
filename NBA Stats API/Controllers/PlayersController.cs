@@ -43,6 +43,16 @@ namespace NBA_Stats_API.Controllers
             else return NotFound();
         }
 
+        // GET api/players/byteamid/
+        [HttpGet("byteamid/{id}", Name = "GetAllPlayersOnTeam")]
+        public ActionResult<PlayerReadDto> GetAllPlayersOnTeam(int id)
+        {
+            var players = _repository.GetAllPlayers().Where(p => p.TeamId == id);
+
+            if (players != null) return Ok(_mapper.Map<IEnumerable<PlayerReadDto>>(players));
+            else return NotFound();
+        }
+
         // PATCH api/commands/{id}
         [HttpPatch("{id}")]
         public ActionResult UpdateCommand(int id, JsonPatchDocument<PlayerUpdateDto> patchDoc)

@@ -23,6 +23,11 @@ namespace NBA_Stats_API.Data
                 .ToList();
         }
 
+        public IEnumerable<Player> GetAllPlayersOnTeam()
+        {
+            return _context.Players.ToList();
+        }
+
         public IEnumerable<Team> GetAllTeams()
         {
             return _context.Teams.ToList();
