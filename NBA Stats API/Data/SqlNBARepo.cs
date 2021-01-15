@@ -35,17 +35,22 @@ namespace NBA_Stats_API.Data
         {
             return _context.Players.FirstOrDefault(p => p.Id == id);
         }
-
-        public object GetPlayerByName(string name)
+        public IEnumerable<Player> GetPlayerByName(string name)
         {
             return _context.Players
                 .Include(t => t.Team)
-                .FirstOrDefault(p => p.FirstName.Contains(name) || p.LastName.Contains(name));
+                .Where(p => p.FirstName.Contains(name) || p.LastName.Contains(name))
+                .ToList();
         }
 
         public Team GetTeamById(int id)
         {
             return _context.Teams.FirstOrDefault(t => t.Id == id);
+        }
+
+        public IEnumerable<Team> GetTeamByName(string name)
+        {
+            return _context.Teams.Where(t => t.Name.Contains(name)).ToList();
         }
 
         public bool SaveChanges()
