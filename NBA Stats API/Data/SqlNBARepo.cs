@@ -21,9 +21,19 @@ namespace NBA_Stats_API.Data
                 .ToList();
         }
 
-        public IEnumerable<Player> GetAllPlayersOnTeam()
+        public IEnumerable<Player> GetAllPlayersOnTeamId(int id)
         {
-            return _context.Players.ToList();
+            return _context.Players
+                .Include(t => t.Team)
+                .Where(p => p.TeamId == id)
+                .ToList();
+        }
+        public IEnumerable<Player> GetAllPlayersOnTeamName(string name)
+        {
+            return _context.Players
+                .Include(t => t.Team)
+                .Where(p => p.Team.Name.Contains(name))
+                .ToList();
         }
 
         public IEnumerable<Team> GetAllTeams()
@@ -51,16 +61,6 @@ namespace NBA_Stats_API.Data
         public IEnumerable<Team> GetTeamByName(string name)
         {
             return _context.Teams.Where(t => t.Name.Contains(name)).ToList();
-        }
-
-        public bool SaveChanges()
-        {
-            return _context.SaveChanges() >= 0;
-        }
-
-        public void UpdatePlayer(Player player)
-        {
-            
         }
     }
 }
