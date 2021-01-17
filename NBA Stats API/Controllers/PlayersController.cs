@@ -60,8 +60,8 @@ namespace NBA_Stats_API.Controllers
             else return NotFound();
         }
 
-        // GET api/players/ByTeamName/{id}
-        [HttpGet("ByTeam/{name}", Name = "GetAllPlayersOnTeam")]
+        // GET api/players/ByTeamName/{name}
+        [HttpGet("ByTeamName/{name}", Name = "GetAllPlayersOnTeam")]
         public ActionResult<PlayerReadDto> GetAllPlayersOnTeamName(string name)
         {
             var players = _repository.GetAllPlayersOnTeamName(name);
